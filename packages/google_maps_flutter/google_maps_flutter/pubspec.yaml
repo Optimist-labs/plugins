@@ -10,7 +10,7 @@ dependencies:
   google_maps_flutter_platform_interface:
     git:
       url: git://github.com/Optimist-labs/plugins.git
-      ref: go-here
+      ref: google_maps_flutter
       path: packages/google_maps_flutter/google_maps_flutter_platform_interface
 
 dev_dependencies:
