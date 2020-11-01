@@ -541,6 +541,57 @@ void main() {
     expect(secondVisibleRegion.contains(newCenter), isTrue);
   });
 
+  testWidgets('testMyLocation', (WidgetTester tester) async {
+    final Key key = GlobalKey();
+    final Completer<GoogleMapInspector> inspectorCompleter =
+        Completer<GoogleMapInspector>();
+
+    await tester.pumpWidget(Directionality(
+      textDirection: TextDirection.ltr,
+      child: GoogleMap(
+        key: key,
+        initialCameraPosition: _kInitialCameraPosition,
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+        onMapCreated: (GoogleMapController controller) {
+          final GoogleMapInspector inspector =
+              // ignore: invalid_use_of_visible_for_testing_member
+              GoogleMapInspector(controller.channel);
+          inspectorCompleter.complete(inspector);
+        },
+      ),
+    ));
+
+    GoogleMapInspector inspector = await inspectorCompleter.future;
+    bool myLocationEnabled = await inspector.isMyLocationEnabled();
+    expect(myLocationEnabled, true);
+    bool myLocationButtonEnabled = await inspector.isMyLocationButtonEnabled();
+    expect(myLocationButtonEnabled, true);
+
+    await tester.pumpWidget(Directionality(
+      textDirection: TextDirection.ltr,
+      child: GoogleMap(
+        key: key,
+        initialCameraPosition: _kInitialCameraPosition,
+        myLocationEnabled: false,
+        myLocationButtonEnabled: false,
+        onMapCreated: (GoogleMapController controller) {
+          final GoogleMapInspector inspector =
+              // ignore: invalid_use_of_visible_for_testing_member
+              GoogleMapInspector(controller.channel);
+          inspectorCompleter.complete(inspector);
+        },
+      ),
+    ));
+
+    inspector = await inspectorCompleter.future;
+    myLocationEnabled = await inspector.isMyLocationEnabled();
+    expect(myLocationEnabled, false);
+    myLocationButtonEnabled = await inspector.isMyLocationButtonEnabled();
+    expect(myLocationButtonEnabled, false);
+  }, skip: true);
+  //TODO: Remove `skip' when https://github.com/flutter/flutter/issues/12561 will be fixed
+
   testWidgets('testTraffic', (WidgetTester tester) async {
     final Key key = GlobalKey();
     final Completer<GoogleMapInspector> inspectorCompleter =

@@ -1,3 +1,8 @@
+## 1.0.7
+
+* Fix references to `myLocationButtonEnabled` in test and example app.
+* Added `isMyLocationEnabled` to `GoogleMapsInspector`.
+
 ## 1.0.6
 
 Add TileOverlay support.

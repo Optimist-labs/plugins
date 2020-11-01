@@ -61,6 +61,10 @@ class GoogleMapInspector {
     return await _channel.invokeMethod<bool>('map#isScrollGesturesEnabled');
   }
 
+  Future<bool> isMyLocationEnabled() async {
+    return await _channel.invokeMethod<bool>('map#isMyLocationEnabled');
+  }
+
   Future<bool> isMyLocationButtonEnabled() async {
     return await _channel.invokeMethod<bool>('map#isMyLocationButtonEnabled');
   }

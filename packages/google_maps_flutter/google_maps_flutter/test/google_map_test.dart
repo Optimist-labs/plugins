@@ -451,7 +451,7 @@ void main() {
         textDirection: TextDirection.ltr,
         child: GoogleMap(
           initialCameraPosition: CameraPosition(target: LatLng(10.0, 15.0)),
-          myLocationEnabled: false,
+          myLocationButtonEnabled: false,
         ),
       ),
     );
@@ -459,19 +459,19 @@ void main() {
     final FakePlatformGoogleMap platformGoogleMap =
         fakePlatformViewsController.lastCreatedView;
 
-    expect(platformGoogleMap.myLocationButtonEnabled, true);
+    expect(platformGoogleMap.myLocationButtonEnabled, false);
 
     await tester.pumpWidget(
       const Directionality(
         textDirection: TextDirection.ltr,
         child: GoogleMap(
           initialCameraPosition: CameraPosition(target: LatLng(10.0, 15.0)),
-          myLocationButtonEnabled: false,
+          myLocationButtonEnabled: true,
         ),
       ),
     );
 
-    expect(platformGoogleMap.myLocationButtonEnabled, false);
+    expect(platformGoogleMap.myLocationButtonEnabled, true);
   });
 
   testWidgets('Is default padding 0', (WidgetTester tester) async {
