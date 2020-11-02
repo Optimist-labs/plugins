@@ -1,3 +1,7 @@
+## 1.0.8
+
+* Android: Add dummy map initialization
+
 ## 1.0.7
 
 * Fix references to `myLocationButtonEnabled` in test and example app.

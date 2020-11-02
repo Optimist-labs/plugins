@@ -1,3 +1,7 @@
+## 1.0.6
+
+* Android: Add dummy map initialization
+
 ## 1.0.5
 
 Add TileOverlay support.
